@@ -1,0 +1,12 @@
+- hosts: all
+  become: true
+  tasks:
+     - name: Create new deployment
+       command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Deployment.yaml --validate=false
+       environment:
+         KUBECONFIG: /home/ubuntu/.kube/config
+       register: result
+       ignore_errors: yes
+     - name: Create new service
+       command: kubectl apply -f /home/ubuntu/Service.yaml
+       
