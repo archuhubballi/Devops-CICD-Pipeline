@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mydevops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mydevops
+  template: 
+    metadata:  
+      labels: 
+        app: mydevops
+    spec: 
+      containers:
+      - name: mydevops
+        image: archu707/pipeline-demo
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
